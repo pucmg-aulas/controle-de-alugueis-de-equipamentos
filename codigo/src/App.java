@@ -1,0 +1,98 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        List<Cliente> listaClientes = new ArrayList<>();
+
+        int choice = 0;
+
+        do {
+            System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS *****");
+            System.out.println("1 - Clientes\n2 - Equipamentos\n3 - Alugueis\n0 - Sair");
+            System.out.print("Digite a opcao desejada: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES *****");
+                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Clientes\n0 - Sair");
+                    System.out.print("Digite a opcao desejada: ");
+                    choice = scanner.nextInt();
+
+                    switch (choice) {
+                        case 1:
+                            Cliente.cadastrarCliente(scanner, listaClientes);
+                            break;
+                        case 2:
+                            System.out.println("Cliente editado com sucesso!");
+                            break;
+                        case 3:
+                            System.out.println("Cliente excluído com sucesso!");
+                            break;
+                        case 4:
+                            Cliente.listarClientes(listaClientes);
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
+                    break;
+                case 2:
+                    System.out.println("\n\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTOS *****");
+                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n0 - Sair");
+                    choice = scanner.nextInt();
+
+                    switch (choice) {
+                        case 1:
+                            System.out.println("Equipamento cadastrado com sucesso!");
+                            break;
+                        case 2:
+                            System.out.println("Equipamento editado com sucesso!");
+                            break;
+                        case 3:
+                            System.out.println("Equipamento excluído com sucesso!");
+                            break;
+                        case 4:
+                            System.out.println("Saindo...");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
+                    break;
+                case 3:
+                    System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEIS *****");
+                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n0 - Sair");
+                    choice = scanner.nextInt();
+
+                    switch (choice) {
+                        case 1:
+                            System.out.println("Aluguel cadastrado com sucesso!");
+                            break;
+                        case 2:
+                            System.out.println("Aluguel editado com sucesso!");
+                            break;
+                        case 3:
+                            System.out.println("Aluguel excluído com sucesso!");
+                            break;
+                        case 4:
+                            System.out.println("Saindo...");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
+                    break;
+                case 4:
+                    System.out.println();
+
+            }
+
+        } while (choice != 0);
+
+        scanner.close();
+    }
+}
