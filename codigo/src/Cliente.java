@@ -28,7 +28,7 @@ public class Cliente {
 
         this.endereco = endereco;
 
-        if(telefone.length() <= 12 && telefone.matches("[0-9]+$")) {
+        if(telefone.length() <= 11 && telefone.matches("[0-9]+$")) {
             this.telefone = telefone;
         } else {
             throw new Error("erro: telefone invalido!");
