@@ -6,6 +6,8 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         List<Cliente> listaClientes = new ArrayList<>();
+        List<Equipamento> listaEquipamentos = new ArrayList<>();
+        List<Aluguel> listaAlugueis = new ArrayList<>();
 
         int choice = 0;
 
@@ -42,12 +44,12 @@ public class App {
                     break;
                 case 2:
                     System.out.println("\n\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTOS *****");
-                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n0 - Sair");
+                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Equipamentos\n0 - Sair");
                     choice = scanner.nextInt();
 
                     switch (choice) {
                         case 1:
-                            System.out.println("Equipamento cadastrado com sucesso!");
+                            Equipamento.cadastrarEquipamento(scanner, listaEquipamentos);
                             break;
                         case 2:
                             System.out.println("Equipamento editado com sucesso!");
@@ -56,6 +58,9 @@ public class App {
                             System.out.println("Equipamento excluído com sucesso!");
                             break;
                         case 4:
+                            Equipamento.listarEquipamentos(listaEquipamentos);
+                            break;
+                        case 0:
                             System.out.println("Saindo...");
                             break;
                         default:
@@ -65,12 +70,12 @@ public class App {
                     break;
                 case 3:
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEIS *****");
-                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n0 - Sair");
+                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Alugueis\n0 - Sair");
                     choice = scanner.nextInt();
 
                     switch (choice) {
                         case 1:
-                            System.out.println("Aluguel cadastrado com sucesso!");
+                            Aluguel.cadastrarAluguel(scanner, listaClientes, listaEquipamentos, listaAlugueis);
                             break;
                         case 2:
                             System.out.println("Aluguel editado com sucesso!");
@@ -79,6 +84,9 @@ public class App {
                             System.out.println("Aluguel excluído com sucesso!");
                             break;
                         case 4:
+                            Aluguel.listarAlugueis(listaAlugueis);
+                            break;
+                        case 0:
                             System.out.println("Saindo...");
                             break;
                         default:
@@ -86,11 +94,10 @@ public class App {
                             break;
                     }
                     break;
-                case 4:
-                    System.out.println();
-
+                case 0:
+                    System.out.println("Saindo...");
             }
-
+            
         } while (choice != 0);
 
         scanner.close();

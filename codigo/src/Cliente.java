@@ -18,29 +18,30 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        contadorIDs++;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public static void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
-        String nome ,CPF, endereco, telefone, email;
-
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / CADASTRAR *****");
         System.out.print("Digite o nome do cliente: ");
         scanner.nextLine();
-        nome = scanner.nextLine();
+        String nome = scanner.nextLine();
         System.out.print("Digite o CPF do cliente: ");
-        CPF = scanner.nextLine();
+        String CPF = scanner.nextLine();
         System.out.print("Digite o endereço do cliente: ");
-        endereco = scanner.nextLine();
+        String endereco = scanner.nextLine();
         System.out.print("Digite o telefone do cliente: ");
-        telefone = scanner.nextLine();
+        String telefone = scanner.nextLine();
         System.out.print("Digite o e-mail do cliente: ");
-        email = scanner.nextLine();
+        String email = scanner.nextLine();
         System.out.printf("Cliente %s cadastrado com sucesso!\n\n", nome);
 
         Cliente novoCliente = new Cliente(contadorIDs, nome, CPF, endereco, telefone, email);
-        contadorIDs++;
 
-        // List<Cliente> listaClientes = new ArrayList<>();
         listaClientes.add(novoCliente);
     }
 
