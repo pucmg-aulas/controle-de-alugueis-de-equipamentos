@@ -11,14 +11,30 @@ public class Cliente {
     private String telefone;
     private String email;
 
-    public Cliente(int id, String nome, String cpf, String endereco, String telefone, String email) {
-        this.id = contadorIDs;
-        this.nome = nome;
-        this.cpf = cpf;
+    public Cliente(String nome, String cpf, String endereco, String telefone, String email) throws Exception {
+        this.id = ++contadorIDs;
+
+        if(nome.length() <= 45 && nome.matches("[a-zA-Z ]+$")) { // teste nome
+            this.nome = nome;
+        } else {
+            throw new Error("erro: nome invalido!");
+        }
+
+        if(cpf.length() == 14 && cpf.matches("([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")) { // teste cpf
+            this.cpf = cpf;
+        } else {
+            throw new Error("erro: cpf invalido!");
+        }
+
         this.endereco = endereco;
-        this.telefone = telefone;
+
+        if(telefone.length() <= 12 && telefone.matches("[0-9]+$")) {
+            this.telefone = telefone;
+        } else {
+            throw new Error("erro: telefone invalido!");
+        }
+        
         this.email = email;
-        contadorIDs++;
     }
 
     public String getNome() {
@@ -38,11 +54,14 @@ public class Cliente {
         String telefone = scanner.nextLine();
         System.out.print("Digite o e-mail do cliente: ");
         String email = scanner.nextLine();
-        System.out.printf("Cliente %s cadastrado com sucesso!\n\n", nome);
 
-        Cliente novoCliente = new Cliente(contadorIDs, nome, CPF, endereco, telefone, email);
-
-        listaClientes.add(novoCliente);
+        try {
+            Cliente novoCliente = new Cliente(nome, CPF, endereco, telefone, email);
+            listaClientes.add(novoCliente);
+            System.out.printf("Cliente %s cadastrado com sucesso!\n\n", nome);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void editarCliente() {
