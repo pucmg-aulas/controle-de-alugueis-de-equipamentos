@@ -1,5 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Cliente {
     private static int contadorIDs = 0;
@@ -14,12 +16,12 @@ public class Cliente {
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) throws Exception {
         this.id = ++contadorIDs;
 
-        if(nome.length() <= 45 && nome.matches("[a-zA-Z ]+$")) { // teste nome
+        if (nome.matches("^[a-zA-Z]+$") == true){
             this.nome = nome;
-        } else {
+        }else{
             throw new Error("erro: nome invalido!");
         }
-
+       
         if(validaCPF(cpf) == true){
             this.cpf = cpf;
         } else {
@@ -33,6 +35,12 @@ public class Cliente {
         } else {
             throw new Error("erro: telefone invalido!");
         }
+
+        if(validaEmail(email) == true ) {
+            this.email = email;
+        } else {
+            throw new Error("erro: telefone invalido!");
+        }
         
         this.email = email;
     }
@@ -42,24 +50,39 @@ public class Cliente {
     }
 
     public static void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
-        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / CADASTRAR *****");
-        System.out.print("Digite o nome do cliente: ");
-        scanner.nextLine();
-        String nome = scanner.nextLine();
-        System.out.print("Digite o CPF do cliente no formato xxx.xxx.xxx-xx: ");
-        String CPF = scanner.nextLine();
-        System.out.print("Digite o endereço do cliente: ");
-        String endereco = scanner.nextLine();
-        System.out.print("Digite o telefone do cliente: ");
-        String telefone = scanner.nextLine();
-        System.out.print("Digite o e-mail do cliente: ");
-        String email = scanner.nextLine();
+        String nome, CPF, endereco, telefone, email;
+
+        do {
+            System.out.print("Digite o nome do cliente: ");
+            nome = scanner.nextLine();
+        } while (!nome.matches("^[a-zA-Z]+$"));
+
+        do {
+            System.out.print("Digite o CPF do cliente no formato xxx.xxx.xxx-xx: ");
+            CPF = scanner.nextLine();
+        } while (validaCPF(CPF));
+
+        do {
+            System.out.print("Digite o endereço do cliente: ");
+            endereco = scanner.nextLine();
+        } while (endereco.isEmpty());
+
+        do {
+            System.out.print("Digite o telefone do cliente (apenas números): ");
+            telefone = scanner.nextLine();
+        } while (!telefone.matches("^[0-9]+$"));
+
+        do {
+            System.out.print("Digite o e-mail do cliente: ");
+            email = scanner.nextLine();
+        } while (!validaEmail(email));
 
         try {
             Cliente novoCliente = new Cliente(nome, CPF, endereco, telefone, email);
             listaClientes.add(novoCliente);
             System.out.printf("Cliente %s cadastrado com sucesso!\n\n", nome);
-        } catch(Exception e) {
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar o cliente. Verifique os dados fornecidos.");
             e.printStackTrace();
         }
     }
@@ -127,6 +150,15 @@ public class Cliente {
         int digito2 = (resto2 < 2) ? 0 : 11 - resto2;
     
         return (digitos[9] == digito1) && (digitos[10] == digito2);
+    }
+    
+    public static boolean validaEmail(String email) {
+        // Essa função valida se o email está em um formato básico, como usuario@dominio.com
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.matches();
     }
     
 }
