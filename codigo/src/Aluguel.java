@@ -24,7 +24,7 @@ public class Aluguel {
     }
 
     public static void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
-        int idCliente;
+        int idCliente, idEquipamento;
 
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEL / CADASTRAR *****");
         
@@ -35,10 +35,13 @@ public class Aluguel {
         } while (Cliente.buscarClientePorID(listaClientes, idCliente) == null);
         Cliente cliente = Cliente.buscarClientePorID(listaClientes, idCliente);
 
-        System.out.print("Digite o ID do equipamento a ser alugado: ");
-        int idEquipamento = scanner.nextInt();
+        do {
+            System.out.print("Digite o ID do equipamento a ser alugado: ");
+            idEquipamento = scanner.nextInt();
+        } while (Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento) == null);
         Equipamento equipamento = Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento);
 
+        //DAVI ARRUMAR AS DATAS      
         System.out.print("Digite a data de início do aluguel: ");
         scanner.nextLine();
         LocalDate dataInicio = LocalDate.parse(scanner.nextLine());
