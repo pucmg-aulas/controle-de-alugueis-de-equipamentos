@@ -18,6 +18,7 @@ public class Cliente {
         this.id = ++contadorIDs;
         this.nome = nome;
         this.cpf = cpf;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
     }
