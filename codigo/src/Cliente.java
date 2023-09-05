@@ -26,6 +26,34 @@ public class Cliente {
         return nome;
     }
 
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public String getCPF(){
+        return cpf;
+    }
+
+    public void setCPF(String cpf){
+        this.cpf = cpf;
+    }
+
+    public String getTelefone(){
+        return telefone;
+    }
+
+    public void setTelegone(String telefone){
+        this.telefone = telefone;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setTelefonea(String email){
+        this.email = email;
+    }
+    
     public static void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
         /*
         String nome -> somente aceita letras
