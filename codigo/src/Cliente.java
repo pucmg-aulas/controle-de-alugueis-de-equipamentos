@@ -65,9 +65,9 @@ public class Cliente {
         Função que cria o cadastro do cliente e valida se os dados são validos */
 
         String nome, CPF, endereco, telefone, email;
-
         do {
             System.out.print("Digite o nome do cliente: ");
+            scanner.nextLine();
             nome = scanner.nextLine();
         } while (!nome.matches("^[a-zA-Z]+$"));
 
