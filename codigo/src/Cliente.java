@@ -13,35 +13,12 @@ public class Cliente {
     private String telefone;
     private String email;
 
-    public Cliente(String nome, String cpf, String endereco, String telefone, String email) throws Exception {
-        this.id = ++contadorIDs;
-
-        if (nome.matches("^[a-zA-Z]+$") == true){
-            this.nome = nome;
-        }else{
-            throw new Error("erro: nome invalido!");
-        }
-       
-        if(validaCPF(cpf) == true){
-            this.cpf = cpf;
-        } else {
-            throw new Error("erro: cpf invalido!");
-        }
-
-        this.endereco = endereco;
-
-        if(telefone.length() <= 11 && telefone.matches("[0-9]+$")) {
-            this.telefone = telefone;
-        } else {
-            throw new Error("erro: telefone invalido!");
-        }
-
-        if(validaEmail(email) == true ) {
-            this.email = email;
-        } else {
-            throw new Error("erro: telefone invalido!");
-        }
+    public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
         
+        this.id = ++contadorIDs;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
         this.email = email;
     }
 
