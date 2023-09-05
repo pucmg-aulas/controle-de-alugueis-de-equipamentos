@@ -14,7 +14,7 @@ public class Cliente {
     private String email;
 
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
-        
+
         this.id = ++contadorIDs;
         this.nome = nome;
         this.cpf = cpf;
@@ -27,6 +27,15 @@ public class Cliente {
     }
 
     public static void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
+        /*
+        String nome -> somente aceita letras
+        String CPF -> somente aceita numeros, no formato de cpf xxx.xxx.xxx-xx e um cpf válido
+        String endenreco
+        String telefone -> somente aceita numeros
+        String email -> somente aceita um email no formato usuario@dominio.com
+
+        Função que cria o cadastro do cliente e valida se os dados são validos */
+
         String nome, CPF, endereco, telefone, email;
 
         do {
@@ -73,6 +82,7 @@ public class Cliente {
     }
 
     public static void listarClientes(List<Cliente> listaClientes) {
+        /*Função que lista todos os clientes*/
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / LISTA DE CLIENTES *****");
         for (Cliente cliente : listaClientes) {
             System.out.println("ID: " + cliente.id);
@@ -86,6 +96,7 @@ public class Cliente {
     }
 
     public static Cliente buscarClientePorID(List<Cliente> listaClientes, int idProcurado) {
+        /*DAVI TEM QUE VALIDAR E DOCUMENTAR */
         for (Cliente cliente : listaClientes) {
             if (cliente.id == idProcurado) {
                 return cliente;
