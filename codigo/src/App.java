@@ -9,6 +9,8 @@ public class App {
         List<Equipamento> listaEquipamentos = new ArrayList<>();
         List<Aluguel> listaAlugueis = new ArrayList<>();
 
+        Cliente.carregarClientes(listaClientes);
+
         int choice = 0;
 
         do {
@@ -27,6 +29,7 @@ public class App {
                     switch (choice) {
                         case 1:
                             Cliente.cadastrarCliente(scanner, listaClientes);
+                            Cliente.salvarClientes(listaClientes);
                             break;
                         case 2:
                             System.out.println("Cliente editado com sucesso!");

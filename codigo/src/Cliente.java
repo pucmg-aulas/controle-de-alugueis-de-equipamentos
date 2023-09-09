@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -14,13 +21,16 @@ public class Cliente {
     private String email;
 
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
-
-        this.id = ++contadorIDs;
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        this.id = contadorIDs++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
@@ -39,11 +49,19 @@ public class Cliente {
         this.cpf = cpf;
     }
 
+    public String getEndereco(){
+        return endereco;
+    }
+
+    public void setEndereco(String endereco){
+        this.endereco = endereco;
+    }
+
     public String getTelefone(){
         return telefone;
     }
 
-    public void setTelegone(String telefone){
+    public void setTelefone(String telefone){
         this.telefone = telefone;
     }
 
@@ -51,7 +69,7 @@ public class Cliente {
         return email;
     }
 
-    public void setTelefonea(String email){
+    public void setEmail(String email){
         this.email = email;
     }
     
@@ -64,6 +82,8 @@ public class Cliente {
         String email -> somente aceita um email no formato usuario@dominio.com
 
         Função que cria o cadastro do cliente e valida se os dados são validos */
+
+        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / CADASTRAR *****");
 
         String nome, CPF, endereco, telefone, email;
         do {
@@ -98,6 +118,75 @@ public class Cliente {
             System.out.printf("Cliente %s cadastrado com sucesso!\n\n", nome);
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar o cliente. Verifique os dados fornecidos.");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return getId() +
+            ";" + getNome() +
+            ";" + getCPF() +
+            ";" + getEndereco() +
+            ";" + getTelefone() +
+            ";" + getEmail();
+    }
+
+    public static void carregarClientes(List<Cliente> listaClientes) {
+        try {
+            File file = new File("C:\\Users\\nomad\\Desktop\\clientes.txt");
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            String dir = file.getAbsolutePath();
+            System.out.println("Arquivo criado em: " + dir);
+
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
+                Cliente cliente = criarClienteDoArquivo(line);
+                listaClientes.add(cliente);
+            }
+
+            bufferedReader.close();
+
+        } catch(IOException e) {
+            System.out.println("Erro ao carregar os clientes.");
+            e.printStackTrace();
+        }
+    }
+
+    public static Cliente criarClienteDoArquivo(String linha) {
+        String[] dados = linha.split(";");
+
+        // int id = Integer.parseInt(dados[0]);
+        String nome = dados[1];
+        String cpf = dados[2];
+        String endereco = dados[3];
+        String telefone = dados[4];
+        String email = dados[5];
+
+        Cliente novoCliente = new Cliente(nome, cpf, endereco, telefone, email);
+
+        return novoCliente;
+    }
+
+    public static void salvarClientes(List<Cliente> listaClientes) {
+        try {
+            File file = new File("C:\\Users\\nomad\\Desktop\\clientes.txt");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for(Cliente cliente: listaClientes) {
+                bufferedWriter.write(cliente.toString());
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+        } catch(IOException e) {
+            System.out.println("Erro ao salvar os clientes.");
             e.printStackTrace();
         }
     }
