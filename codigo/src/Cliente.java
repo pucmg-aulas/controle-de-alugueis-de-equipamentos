@@ -183,7 +183,7 @@ public class Cliente {
 
             bufferedWriter.close();
         } catch(IOException e) {
-            System.out.println("Erro ao salvar os clientes.");
+            System.out.println("Erro ao salvar o cliente.");
             e.printStackTrace();
         }
     }

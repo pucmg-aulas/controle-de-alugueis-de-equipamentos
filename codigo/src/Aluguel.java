@@ -12,7 +12,7 @@ public class Aluguel {
     private Equipamento equipamento;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private float valorTotal;
+    private double valorTotal;
 
     public Aluguel() {
         this.id = -1;
@@ -23,7 +23,7 @@ public class Aluguel {
         this.valorTotal = 0;
     }
 
-    public Aluguel(int id, Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim, float valorTotal) {
+    public Aluguel(Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim, float valorTotal) {
         this.id = contadorIDs;
         this.cliente = cliente;
         this.equipamento = equipamento;
@@ -63,7 +63,7 @@ public class Aluguel {
         System.out.print("Digite a data de fim do aluguel: ");
         LocalDate dataFim = LocalDate.parse(scanner.nextLine());
 
-        Aluguel novoAluguel = new Aluguel(contadorIDs, cliente, equipamento, dataInicio, dataFim, 0);
+        Aluguel novoAluguel = new Aluguel(cliente, equipamento, dataInicio, dataFim, 0);
         listaAlugueis.add(novoAluguel);
     }
 
@@ -84,7 +84,7 @@ public class Aluguel {
         return diasAlugados;
     }
 
-    public float calcularValorTotal() {
+    public double calcularValorTotal() {
         int diasAlugados = calcularDiasAlugados();
         valorTotal = diasAlugados * equipamento.getValorDiaria();
         return valorTotal;

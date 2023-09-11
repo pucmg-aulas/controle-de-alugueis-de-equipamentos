@@ -48,6 +48,45 @@ public class App {
                 e.printStackTrace();
             }
         }
+        public static Equipamento criarEquipamentoDoArquivo(String linha) {
+        String[] dados = linha.split(";");
+
+        // int id = Integer.parseInt(dados[0]);
+        String nome = dados[1];
+        String descricao = dados[2];
+        double valorDiaria = Double.parseDouble(dados[3]);
+
+        Equipamento novoEquipamento = new Equipamento(nome, descricao, valorDiaria);
+
+        return novoEquipamento;
+    }
+
+        public static void carregarEquipamentos(List<Equipamento> listaEquipamentos) {
+            try {
+                File file = new File(".\\codigo\\src\\equipamentos.txt");
+                if(!file.exists()) {
+                    file.createNewFile();
+                }
+                String dir = file.getAbsolutePath();
+                System.out.println("Arquivo criado em: " + dir);
+    
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+    
+                String line;
+                while((line = bufferedReader.readLine()) != null) {
+                    Equipamento equipamento = criarEquipamentoDoArquivo(line);
+                    listaEquipamentos.add(equipamento);
+                }
+    
+                bufferedReader.close();
+    
+            } catch(IOException e) {
+                System.out.println("Erro ao carregar os equipamentos.");
+                e.printStackTrace();
+            }
+        }
+
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
