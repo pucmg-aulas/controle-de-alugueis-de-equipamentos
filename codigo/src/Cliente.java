@@ -15,11 +15,13 @@ public class Cliente {
 
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
 
-        this.id = ++contadorIDs;
+        this.id = contadorIDs;
+        contadorIDs++;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
+
     }
 
     public String getNome() {
@@ -53,7 +55,7 @@ public class Cliente {
     public void setTelefonea(String email){
         this.email = email;
     }
-    
+
     public static void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
         /*
         String nome -> somente aceita letras
