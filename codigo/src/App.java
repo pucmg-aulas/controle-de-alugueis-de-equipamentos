@@ -107,7 +107,7 @@ public class App {
 
                     switch (choice) {
                         case 1:
-                            Equipamento.cadastrarEquipamento(scanner, listaEquipamentos);
+                            equipamento.cadastrarEquipamento(scanner, listaEquipamentos);
                             break;
                         case 2:
                             System.out.println("Equipamento editado com sucesso!");

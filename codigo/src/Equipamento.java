@@ -27,7 +27,7 @@ public class Equipamento {
         return valorDiaria;
     }
 
-    public static void cadastrarEquipamento(Scanner scanner, List<Equipamento> listaEquipamentos) {
+    public void cadastrarEquipamento(Scanner scanner, List<Equipamento> listaEquipamentos) {
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTO / CADASTRAR *****");
         System.out.print("Digite a descricao do equipamento: ");
         scanner.nextLine();
