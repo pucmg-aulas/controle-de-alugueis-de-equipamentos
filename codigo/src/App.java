@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FilePermission;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +10,9 @@ public class App {
         List<Cliente> listaClientes = new ArrayList<>();
         List<Equipamento> listaEquipamentos = new ArrayList<>();
         List<Aluguel> listaAlugueis = new ArrayList<>();
-        String diretorioAtual = System.getProperty("");
+        //String diretorioAtual = System.getProperty("user.home") + "\\AppData\\Local\\Temp";
 
-        Cliente.carregarClientes(listaClientes, diretorioAtual);
+        Cliente.carregarClientes(listaClientes);
 
         int choice = 0;
 
@@ -31,7 +32,7 @@ public class App {
                     switch (choice) {
                         case 1:
                             Cliente.cadastrarCliente(scanner, listaClientes);
-                            Cliente.salvarClientes(listaClientes, diretorioAtual);
+                            Cliente.salvarClientes(listaClientes);
                             break;
                         case 2:
                             System.out.println("Cliente editado com sucesso!");
