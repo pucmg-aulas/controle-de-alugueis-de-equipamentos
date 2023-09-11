@@ -9,7 +9,7 @@ public class App {
         List<Cliente> listaClientes = new ArrayList<>();
         List<Equipamento> listaEquipamentos = new ArrayList<>();
         List<Aluguel> listaAlugueis = new ArrayList<>();
-        String diretorioAtual = System.getProperty("user.home") + File.separator + "Documents";
+        String diretorioAtual = System.getProperty("");
 
         Cliente.carregarClientes(listaClientes, diretorioAtual);
 
