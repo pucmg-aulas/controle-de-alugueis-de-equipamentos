@@ -147,9 +147,9 @@ public class Cliente {
             ";" + getEmail();
     }
 
-    public static void carregarClientes(List<Cliente> listaClientes, String diretorioAtual) {
+    public static void carregarClientes(List<Cliente> listaClientes) {
         try {
-            File file = new File(diretorioAtual + "\\clientes.txt");
+            File file = new File(".\\codigo\\src\\clientes.txt");
             if(!file.exists()) {
                 file.createNewFile();
             }
@@ -188,9 +188,9 @@ public class Cliente {
         return novoCliente;
     }
 
-    public static void salvarClientes(List<Cliente> listaClientes, String diretorioAtual) {
+    public static void salvarClientes(List<Cliente> listaClientes) {
         try {
-            File file = new File(diretorioAtual);
+            File file = new File(".\\codigo\\src\\clientes.txt");
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
