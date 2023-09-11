@@ -8,6 +8,11 @@ public class Equipamento {
     private String descricao;
     private float valorDiaria;
 
+    public Equipamento() {
+        this.descricao = null;
+        this.valorDiaria = 0;
+    }
+
     public Equipamento(int id, String descricao, float valorDiaria) {
         this.descricao = descricao;
         this.valorDiaria = valorDiaria;

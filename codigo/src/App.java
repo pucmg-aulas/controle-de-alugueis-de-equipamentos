@@ -3,8 +3,53 @@ import java.io.FilePermission;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class App {
+
+    public static Cliente criarClienteDoArquivo(String linha) {
+        String[] dados = linha.split(";");
+
+        // int id = Integer.parseInt(dados[0]);
+        String nome = dados[1];
+        String cpf = dados[2];
+        String endereco = dados[3];
+        String telefone = dados[4];
+        String email = dados[5];
+
+        Cliente novoCliente = new Cliente(nome, cpf, endereco, telefone, email);
+
+        return novoCliente;
+    }
+
+    public static void carregarClientes(List<Cliente> listaClientes) {
+            try {
+                File file = new File(".\\codigo\\src\\clientes.txt");
+                if(!file.exists()) {
+                    file.createNewFile();
+                }
+                String dir = file.getAbsolutePath();
+                System.out.println("Arquivo criado em: " + dir);
+    
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+    
+                String line;
+                while((line = bufferedReader.readLine()) != null) {
+                    Cliente cliente = criarClienteDoArquivo(line);
+                    listaClientes.add(cliente);
+                }
+    
+                bufferedReader.close();
+    
+            } catch(IOException e) {
+                System.out.println("Erro ao carregar os clientes.");
+                e.printStackTrace();
+            }
+        }
+
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         List<Cliente> listaClientes = new ArrayList<Cliente>();
@@ -12,13 +57,13 @@ public class App {
         List<Aluguel> listaAlugueis = new ArrayList<Aluguel>();
         //String diretorioAtual = System.getProperty("user.home") + "\\AppData\\Local\\Temp";
 
-        Cliente.carregarClientes(listaClientes);
+        carregarClientes(listaClientes);
 
         int choice = 0;
 
         do {
-            System.out.print("\033[H\033[2J"); // Limpa o console
-            System.out.flush();
+            //System.out.print("\033[H\033[2J"); // Limpa o console
+            //System.out.flush();
             System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS *****");
             System.out.println("1 - Clientes\n2 - Equipamentos\n3 - Alugueis\n0 - Sair");
             System.out.print("Digite a opcao desejada: ");
@@ -26,6 +71,7 @@ public class App {
 
             switch (choice) {
                 case 1:
+                    Cliente cliente = new Cliente();
                     System.out.print("\033[H\033[2J"); // Limpa o console
                     System.out.flush();
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES *****");
@@ -37,7 +83,7 @@ public class App {
                         case 1:
                             System.out.print("\033[H\033[2J"); // Limpa o console
                             System.out.flush();
-                            Cliente.cadastrarCliente(scanner, listaClientes);
+                            cliente.cadastrarCliente(scanner, listaClientes);
                             Cliente.salvarClientes(listaClientes);
                             break;
                         case 2:
@@ -47,7 +93,7 @@ public class App {
                             System.out.println("Cliente excluído com sucesso!");
                             break;
                         case 4:
-                            Cliente.listarClientes(listaClientes);
+                            cliente.listarClientes(listaClientes);
                             break;
                         default:
                             System.out.println("Opção inválida!");
@@ -58,6 +104,7 @@ public class App {
                     System.out.println("\n\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTOS *****");
                     System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Equipamentos\n0 - Sair");
                     choice = scanner.nextInt();
+                    Equipamento equipamento = new Equipamento();
 
                     switch (choice) {
                         case 1:
@@ -84,10 +131,11 @@ public class App {
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEIS *****");
                     System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Alugueis\n0 - Sair");
                     choice = scanner.nextInt();
+                    Aluguel aluguel = new Aluguel();
 
                     switch (choice) {
                         case 1:
-                            Aluguel.cadastrarAluguel(scanner, listaClientes, listaEquipamentos, listaAlugueis);
+                            aluguel.cadastrarAluguel(scanner, listaClientes, listaEquipamentos, listaAlugueis);
                             break;
                         case 2:
                             System.out.println("Aluguel editado com sucesso!");

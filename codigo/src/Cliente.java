@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +16,14 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private String email;
+
+    public Cliente() {
+        this.nome = null;
+        this.cpf =  null;
+        this.endereco = null;
+        this.telefone = null;
+        this.email = null;
+    }
 
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
         this.nome = nome;
@@ -71,8 +77,8 @@ public class Cliente {
     public void setEmail(String email){
         this.email = email;
     }
-    
-    public static void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
+
+    public void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
         /*
         String nome -> somente aceita letras
         String CPF -> somente aceita numeros, no formato de cpf xxx.xxx.xxx-xx e um cpf válido
@@ -131,47 +137,6 @@ public class Cliente {
             ";" + getEmail();
     }
 
-    public static void carregarClientes(List<Cliente> listaClientes) {
-        try {
-            File file = new File(".\\codigo\\src\\clientes.txt");
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-            String dir = file.getAbsolutePath();
-            System.out.println("Arquivo criado em: " + dir);
-
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            String line;
-            while((line = bufferedReader.readLine()) != null) {
-                Cliente cliente = criarClienteDoArquivo(line);
-                listaClientes.add(cliente);
-            }
-
-            bufferedReader.close();
-
-        } catch(IOException e) {
-            System.out.println("Erro ao carregar os clientes.");
-            e.printStackTrace();
-        }
-    }
-
-    public static Cliente criarClienteDoArquivo(String linha) {
-        String[] dados = linha.split(";");
-
-        // int id = Integer.parseInt(dados[0]);
-        String nome = dados[1];
-        String cpf = dados[2];
-        String endereco = dados[3];
-        String telefone = dados[4];
-        String email = dados[5];
-
-        Cliente novoCliente = new Cliente(nome, cpf, endereco, telefone, email);
-
-        return novoCliente;
-    }
-
     public static void salvarClientes(List<Cliente> listaClientes) {
         try {
             File file = new File(".\\codigo\\src\\clientes.txt");
@@ -198,7 +163,7 @@ public class Cliente {
         System.out.println("Cliente excluído com sucesso!");
     }
 
-    public static void listarClientes(List<Cliente> listaClientes) {
+    public void listarClientes(List<Cliente> listaClientes) {
         /*Função que lista todos os clientes*/
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / LISTA DE CLIENTES *****");
         for (Cliente cliente : listaClientes) {

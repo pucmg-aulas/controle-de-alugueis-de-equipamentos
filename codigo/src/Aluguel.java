@@ -13,6 +13,15 @@ public class Aluguel {
     private LocalDate dataFim;
     private float valorTotal;
 
+    public Aluguel() {
+        this.id = -1;
+        this.cliente = null;
+        this.equipamento = null;
+        this.dataInicio = null;
+        this.dataFim = null;
+        this.valorTotal = 0;
+    }
+
     public Aluguel(int id, Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim, float valorTotal) {
         this.id = contadorIDs;
         this.cliente = cliente;
@@ -23,7 +32,7 @@ public class Aluguel {
         contadorIDs++;
     }
 
-    public static void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
+    public void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
         int idCliente, idEquipamento;
 
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEL / CADASTRAR *****");
