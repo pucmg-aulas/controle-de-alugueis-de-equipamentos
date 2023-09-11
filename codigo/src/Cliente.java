@@ -25,7 +25,8 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-        this.id = contadorIDs++;
+        this.id = contadorIDs;
+        contadorIDs++;
     }
 
     public int getId() {
