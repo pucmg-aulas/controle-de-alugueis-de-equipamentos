@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        List<Cliente> listaClientes = new ArrayList<>();
-        List<Equipamento> listaEquipamentos = new ArrayList<>();
-        List<Aluguel> listaAlugueis = new ArrayList<>();
+        List<Cliente> listaClientes = new ArrayList<Cliente>();
+        List<Equipamento> listaEquipamentos = new ArrayList<Equipamento>();
+        List<Aluguel> listaAlugueis = new ArrayList<Aluguel>();
         //String diretorioAtual = System.getProperty("user.home") + "\\AppData\\Local\\Temp";
 
         Cliente.carregarClientes(listaClientes);
