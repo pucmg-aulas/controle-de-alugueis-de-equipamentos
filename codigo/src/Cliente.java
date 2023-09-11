@@ -82,7 +82,7 @@ public class Cliente {
 
         Função que cria o cadastro do cliente e valida se os dados são validos */
 
-        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / CADASTRAR *****");
+        System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / CADASTRAR *****");
 
         String nome, CPF, endereco, telefone, email;
         do {
