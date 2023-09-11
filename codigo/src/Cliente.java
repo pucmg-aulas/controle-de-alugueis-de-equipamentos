@@ -20,17 +20,35 @@ public class Cliente {
     private String email;
 
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+        this.id = contadorIDs;
+=======
+>>>>>>> 327dfebe63bfac3ff05c17dcd0e8ab430091adc6
+>>>>>>> Stashed changes
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        contadorIDs++;
+=======
+>>>>>>> Stashed changes
         this.id = contadorIDs;
         contadorIDs++;
     }
 
     public int getId() {
         return id;
+<<<<<<< Updated upstream
+=======
+>>>>>>> 327dfebe63bfac3ff05c17dcd0e8ab430091adc6
+>>>>>>> Stashed changes
     }
 
     public String getNome() {
