@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -132,9 +131,9 @@ public class Cliente {
             ";" + getEmail();
     }
 
-    public static void carregarClientes(List<Cliente> listaClientes) {
+    public static void carregarClientes(List<Cliente> listaClientes, String diretorioAtual) {
         try {
-            File file = new File("C:\\Users\\nomad\\Desktop\\clientes.txt");
+            File file = new File(diretorioAtual + "\\clientes.txt");
             if(!file.exists()) {
                 file.createNewFile();
             }
@@ -173,9 +172,9 @@ public class Cliente {
         return novoCliente;
     }
 
-    public static void salvarClientes(List<Cliente> listaClientes) {
+    public static void salvarClientes(List<Cliente> listaClientes, String diretorioAtual) {
         try {
-            File file = new File("C:\\Users\\nomad\\Desktop\\clientes.txt");
+            File file = new File(diretorioAtual);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
