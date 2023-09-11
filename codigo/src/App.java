@@ -96,6 +96,7 @@ public class App {
         //String diretorioAtual = System.getProperty("user.home") + "\\AppData\\Local\\Temp";
 
         carregarClientes(listaClientes);
+        carregarEquipamentos(listaEquipamentos);
 
         int choice = 0;
 

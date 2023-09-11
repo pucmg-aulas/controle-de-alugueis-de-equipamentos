@@ -26,7 +26,6 @@ public class Equipamento {
         this.id = contadorIDs;
         contadorIDs++;
     }
-
     
     public int getId() {
         return id;
