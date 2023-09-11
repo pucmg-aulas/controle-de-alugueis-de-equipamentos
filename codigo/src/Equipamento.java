@@ -9,10 +9,9 @@ public class Equipamento {
     private float valorDiaria;
 
     public Equipamento(int id, String descricao, float valorDiaria) {
-        this.id = id;
         this.descricao = descricao;
         this.valorDiaria = valorDiaria;
-        contadorIDs++;
+        this.id = contadorIDs++;
     }
 
     public String getDescricao() {

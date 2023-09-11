@@ -24,23 +24,30 @@ public class Aluguel {
     }
 
     public static void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
+        int idCliente, idEquipamento;
+
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEL / CADASTRAR *****");
-        System.out.print("Digite o ID do cliente que está alugando: ");
-        int idCliente = scanner.nextInt();
+        
+        do {
+            System.out.print("Digite o ID do cliente que está alugando: ");
+            scanner.nextLine();
+            idCliente = scanner.nextInt();
+        } while (Cliente.buscarClientePorID(listaClientes, idCliente) == null);
         Cliente cliente = Cliente.buscarClientePorID(listaClientes, idCliente);
 
-        System.out.print("Digite o ID do equipamento a ser alugado: ");
-        int idEquipamento = scanner.nextInt();
+        do {
+            System.out.print("Digite o ID do equipamento a ser alugado: ");
+            idEquipamento = scanner.nextInt();
+        } while (Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento) == null);
         Equipamento equipamento = Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento);
 
+        //DAVI ARRUMAR AS DATAS      
         System.out.print("Digite a data de início do aluguel: ");
         scanner.nextLine();
         LocalDate dataInicio = LocalDate.parse(scanner.nextLine());
 
         System.out.print("Digite a data de fim do aluguel: ");
         LocalDate dataFim = LocalDate.parse(scanner.nextLine());
-
-
 
         Aluguel novoAluguel = new Aluguel(contadorIDs, cliente, equipamento, dataInicio, dataFim, 0);
         listaAlugueis.add(novoAluguel);
