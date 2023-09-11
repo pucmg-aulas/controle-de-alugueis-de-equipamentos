@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,15 +35,19 @@ public class Aluguel {
 
     public void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
         int idCliente, idEquipamento;
+        List<Integer> alugueis = new ArrayList<Integer>();
 
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEL / CADASTRAR *****");
-        
         do {
             System.out.print("Digite o ID do cliente que está alugando: ");
             scanner.nextLine();
             idCliente = scanner.nextInt();
         } while (Cliente.buscarClientePorID(listaClientes, idCliente) == null);
         Cliente cliente = Cliente.buscarClientePorID(listaClientes, idCliente);
+        alugueis = cliente.getAlugueis();
+        alugueis.add(this.id);
+        cliente.setAlugueis(alugueis);
+
 
         do {
             System.out.print("Digite o ID do equipamento a ser alugado: ");

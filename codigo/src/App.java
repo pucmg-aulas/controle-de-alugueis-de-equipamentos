@@ -84,6 +84,7 @@ public class App {
                             System.out.flush();
                             cliente.cadastrarCliente(scanner, listaClientes);
                             Cliente.salvarClientes(listaClientes);
+                            
                             break;
                         case 2:
                             System.out.println("Cliente editado com sucesso!");

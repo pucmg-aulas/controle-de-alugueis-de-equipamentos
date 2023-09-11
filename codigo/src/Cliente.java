@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -16,6 +17,7 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private String email;
+    private List<Integer> alugueis;
 
     public Cliente() {
         this.nome = null;
@@ -23,6 +25,7 @@ public class Cliente {
         this.endereco = null;
         this.telefone = null;
         this.email = null;
+        this.alugueis = null;
     }
 
     public Cliente(String nome, String cpf, String endereco, String telefone, String email) {
@@ -33,6 +36,7 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        this.alugueis = new ArrayList<Integer>();
 
     }
 
@@ -79,6 +83,15 @@ public class Cliente {
 
     public void setEmail(String email){
         this.email = email;
+    }
+    
+
+    public List<Integer> getAlugueis() {
+        return alugueis;
+    }
+
+    public void setAlugueis(List<Integer> alugueis) {
+        this.alugueis = alugueis;
     }
 
     public void cadastrarCliente(Scanner scanner, List<Cliente> listaClientes) {
