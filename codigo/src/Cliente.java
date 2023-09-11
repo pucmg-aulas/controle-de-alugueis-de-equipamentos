@@ -108,22 +108,25 @@ public class Cliente {
         System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / CADASTRAR *****");
 
         String nome, CPF, endereco, telefone, email;
-        do {
-            System.out.print("Digite o nome do cliente: ");
-            scanner.nextLine();
-            nome = scanner.nextLine();
-            if(!nome.matches("^[a-zA-Z]+$")){
-                System.out.println("Nome inválido");
-            }
-        } while (!nome.matches("^[a-zA-Z]+$"));
 
-        do {
-            System.out.print("Digite o CPF do cliente no formato xxx.xxx.xxx-xx: ");
-            CPF = scanner.nextLine();
-            if(validaCPF(CPF)){
-                System.out.println("CPF inválido");
-            }
-        } while (validaCPF(CPF));
+        System.out.print("Digite o nome do cliente: ");
+        scanner.nextLine();
+        nome = scanner.nextLine();
+
+        while(!nome.matches("^[a-zA-Z]+$")){
+            System.out.println("Nome inválido");
+            System.out.print("Digite o nome do cliente: ");
+            nome = scanner.nextLine();
+        }
+
+        System.out.print("Digite o CPF do cliente: ");
+        CPF = scanner.nextLine();
+
+        while(validaCPF(CPF)){
+            System.out.println("CPF inválido");
+            System.out.print("Digite o CPF do cliente: ");
+            nome = scanner.nextLine();
+        }
 
         do {
             System.out.print("Digite o endereço do cliente: ");
