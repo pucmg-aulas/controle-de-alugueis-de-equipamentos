@@ -89,26 +89,42 @@ public class Cliente {
             System.out.print("Digite o nome do cliente: ");
             scanner.nextLine();
             nome = scanner.nextLine();
+            if(!nome.matches("^[a-zA-Z]+$")){
+                System.out.println("Nome inválido");
+            }
         } while (!nome.matches("^[a-zA-Z]+$"));
 
         do {
             System.out.print("Digite o CPF do cliente no formato xxx.xxx.xxx-xx: ");
             CPF = scanner.nextLine();
+            if(validaCPF(CPF)){
+                System.out.println("CPF inválido");
+            }
         } while (validaCPF(CPF));
 
         do {
             System.out.print("Digite o endereço do cliente: ");
             endereco = scanner.nextLine();
+            if(endereco.isEmpty()){
+                System.out.println("Endereço inválido");
+            }
         } while (endereco.isEmpty());
 
         do {
             System.out.print("Digite o telefone do cliente (apenas números): ");
             telefone = scanner.nextLine();
+            if(!telefone.matches("^[0-9]+$")){
+                System.out.println("Telefone inválido");
+            }
         } while (!telefone.matches("^[0-9]+$"));
 
         do {
             System.out.print("Digite o e-mail do cliente: ");
             email = scanner.nextLine();
+            if(!validaEmail(email)){
+                System.out.println("E-mail inválido");
+            }
+            
         } while (!validaEmail(email));
 
         try {
