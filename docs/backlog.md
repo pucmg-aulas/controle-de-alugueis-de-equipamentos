@@ -1,4 +1,4 @@
-# Backlog do projeto XXX
+# Backlog do projeto 1 - Software de controle de aluguel de equipamentos
 Atualizado em 11/09/2023
 
 ## Tarefas terminadas
