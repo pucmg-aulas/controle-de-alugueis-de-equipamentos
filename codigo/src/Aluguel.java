@@ -27,7 +27,8 @@ public class Aluguel {
         this.valorTotal = 0;
     }
 
-    public Aluguel(Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim, double valorTotal) {
+    public Aluguel(Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim,
+            double valorTotal) {
         this.id = contadorIDs;
         this.cliente = cliente;
         this.equipamento = equipamento;
@@ -36,7 +37,6 @@ public class Aluguel {
         this.valorTotal = valorTotal;
         contadorIDs++;
     }
-
 
     public int getId() {
         return id;
@@ -89,15 +89,15 @@ public class Aluguel {
     @Override
     public String toString() {
         return getId() +
-            ";" + getCliente().getId() +
-            ";" + getEquipamento().getId() +
-            ";" + getDataInicio() +
-            ";" + getDataFim() +
-            ";" + getValorTotal();
+                ";" + getCliente().getId() +
+                ";" + getEquipamento().getId() +
+                ";" + getDataInicio() +
+                ";" + getDataFim() +
+                ";" + getValorTotal();
     }
 
     public Cliente buscarClientePorID(List<Cliente> listaClientes, int idProcurado) {
-        /*DAVI TEM QUE VALIDAR E DOCUMENTAR */
+        /* DAVI TEM QUE VALIDAR E DOCUMENTAR */
         for (Cliente cliente : listaClientes) {
             if (cliente.getId() == idProcurado) {
                 return cliente;
@@ -115,7 +115,8 @@ public class Aluguel {
         return null;
     }
 
-    public void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
+    public void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos,
+            List<Aluguel> listaAlugueis) {
         int idCliente, idEquipamento;
         List<Integer> alugueis = new ArrayList<Integer>();
 
@@ -130,14 +131,13 @@ public class Aluguel {
         alugueis.add(this.id);
         cliente.setAlugueis(alugueis);
 
-
         do {
             System.out.print("Digite o ID do equipamento a ser alugado: ");
             idEquipamento = scanner.nextInt();
         } while (buscarEquipamentoPorID(listaEquipamentos, idEquipamento) == null);
         Equipamento equipamento = buscarEquipamentoPorID(listaEquipamentos, idEquipamento);
 
-        //DAVI ARRUMAR AS DATAS      
+        // DAVI ARRUMAR AS DATAS
         System.out.print("Digite a data de início do aluguel: ");
         scanner.nextLine();
         LocalDate dataInicio = LocalDate.parse(scanner.nextLine());
@@ -155,13 +155,13 @@ public class Aluguel {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(Aluguel aluguel: listaAlugueis) {
+            for (Aluguel aluguel : listaAlugueis) {
                 bufferedWriter.write(aluguel.toString());
                 bufferedWriter.newLine();
             }
 
             bufferedWriter.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Erro ao salvar o cliente.");
             e.printStackTrace();
         }

@@ -84,7 +84,7 @@ public class App {
     }
 
     public void listarClientes() {
-        /*Função que lista todos os clientes*/
+        /* Função que lista todos os clientes */
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / LISTA DE CLIENTES *****");
         for (Cliente cliente : listaClientes) {
             System.out.println("ID: " + cliente.getId());
@@ -98,7 +98,7 @@ public class App {
     }
 
     public Cliente buscarClientePorID(int idProcurado) {
-        /*DAVI TEM QUE VALIDAR E DOCUMENTAR */
+        /* DAVI TEM QUE VALIDAR E DOCUMENTAR */
         for (Cliente cliente : listaClientes) {
             if (cliente.getId() == idProcurado) {
                 return cliente;
@@ -217,6 +217,32 @@ public class App {
         }
     }
 
+    public void listarAluguel(Aluguel aluguel) {
+
+        System.out.println("ID: " + aluguel.getId());
+        System.out.println("Cliente: " + aluguel.getCliente().getNome());
+        System.out.println("Equipamento: " + aluguel.getEquipamento().getDescricao());
+        System.out.println("Dias Alugados: " + aluguel.calcularDiasAlugados());
+        System.out.println("Valor Total: R$" + aluguel.calcularValorTotal());
+        System.out.print("\n");
+
+    }
+
+    public void listarAlugueisCliente(Scanner scanner) {
+        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEL / LISTAR POR CLIENTE *****");
+        int idCliente;
+
+        System.out.println("Digite o ID do cliente: ");
+        idCliente = scanner.nextInt();
+
+        for (int i = 0; i < listaAlugueis.size(); i++) {
+            if (listaAlugueis.get(i).getCliente().getId() == idCliente) {
+                listarAluguel(listaAlugueis.get(i));
+                System.out.println("");
+            }
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         App master = new App();
@@ -290,19 +316,24 @@ public class App {
                     break;
                 case 3:
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEIS *****");
-                    System.out.println("1 - Cadastrar\n2 - Lista de Alugueis\n3 - Sair");
+                    System.out.println(
+                            "1 - Cadastrar\n2 - Lista de Alugueis\n3- Listar Alugueis de um Cliente\n4- Sair");
                     choice = scanner.nextInt();
                     Aluguel aluguel = new Aluguel();
 
                     switch (choice) {
                         case 1:
-                            aluguel.cadastrarAluguel(scanner, master.getListaClientes(), master.getListaEquipamentos(), master.getListaAlugueis());
+                            aluguel.cadastrarAluguel(scanner, master.getListaClientes(), master.getListaEquipamentos(),
+                                    master.getListaAlugueis());
                             aluguel.salvarAlugueis(master.getListaAlugueis());
                             break;
                         case 2:
                             master.listarAlugueis();
                             break;
                         case 3:
+                            master.listarAlugueisCliente(scanner);
+                            break;
+                        case 4:
                             System.out.println("Saindo...");
                             break;
                         default:

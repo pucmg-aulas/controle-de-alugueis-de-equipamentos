@@ -14,7 +14,7 @@ public class Equipamento {
     private double valorDiaria;
 
     public Equipamento() {
-        this.nome=null;
+        this.nome = null;
         this.descricao = null;
         this.valorDiaria = 0;
     }
@@ -26,7 +26,7 @@ public class Equipamento {
         this.id = contadorIDs;
         contadorIDs++;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -78,9 +78,9 @@ public class Equipamento {
     @Override
     public String toString() {
         return getId() +
-            ";" + getNome() +
-            ";" + getDescricao() +
-            ";" + getValorDiaria();
+                ";" + getNome() +
+                ";" + getDescricao() +
+                ";" + getValorDiaria();
     }
 
     public void salvarEquipamentos(List<Equipamento> listaEquipamentos) {
@@ -89,13 +89,13 @@ public class Equipamento {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(Equipamento equipamento: listaEquipamentos) {
+            for (Equipamento equipamento : listaEquipamentos) {
                 bufferedWriter.write(equipamento.toString());
                 bufferedWriter.newLine();
             }
 
             bufferedWriter.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Erro ao salvar o equipamento.");
             e.printStackTrace();
         }
