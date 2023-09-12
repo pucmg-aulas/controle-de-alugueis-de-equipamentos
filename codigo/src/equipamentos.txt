@@ -1,1 +1,51 @@
 0;pa;pa pequena;10.0
+1;Escavadeira;Escavadeira de esteira para escavação de solo;350.00
+2;Betoneira;Betoneira de 120 litros para mistura de concreto;80.00
+3;Guindaste;Guindaste móvel de 50 toneladas;500.00
+4;Martelo Pneumático;Martelo pneumático para quebra de rochas;120.00
+5;Retroescavadeira;Retroescavadeira para escavação em locais apertados;280.00
+6;Trator de Esteira;Trator de esteira para nivelamento do terreno;450.00
+7;Caminhão Basculante;Caminhão basculante de 10 metros cúbicos;200.00
+8;Placa Vibratória;Placa vibratória para compactação de solo;60.00
+9;Serra Circular;Serra circular para corte de madeira;40.00
+10;Compactador de Solo;Compactador de solo para obras rodoviárias;180.00
+11;Escavadeira;Escavadeira de esteira para escavação de valas;320.00
+12;Máquina de Solda;Máquina de solda elétrica de alto desempenho;90.00
+13;Guindaste;Guindaste telescópico de 100 toneladas;750.00
+14;Rompedor Hidráulico;Rompedor hidráulico para demolição de concreto;150.00
+15;Mini Escavadeira;Mini escavadeira compacta para escavação em espaços pequenos;240.00
+16;Trator de Pneus;Trator de pneus para preparação de terrenos agrícolas;380.00
+17;Caminhão Pipa;Caminhão pipa de 10.000 litros para transporte de água;160.00
+18;Furadeira de Impacto;Furadeira de impacto para perfuração de concreto;70.00
+19;Compactador de Asfalto;Compactador de asfalto vibratório;280.00
+20;Grua;Grua de torre para elevação de materiais em obras;600.00
+21;Mixer de Concreto;Mixer de concreto portátil;120.00
+22;Rolo Compactador;Rolo compactador de asfalto;350.00
+23;Escavadeira;Escavadeira hidráulica de 30 toneladas;420.00
+24;Serra de Bancada;Serra de bancada para marcenaria;50.00
+25;Gerador de Energia;Gerador de energia a diesel de 100 kVA;280.00
+26;Martelo Demolidor;Martelo demolidor para demolição pesada;200.00
+27;Mini Carregadeira;Mini carregadeira com caçamba;200.00
+28;Caminhão Guincho;Caminhão guincho para transporte de cargas pesadas;320.00
+29;Cortadora de Piso;Cortadora de piso a gasolina;90.00
+30;Escavadeira de Rodas;Escavadeira de rodas para escavação em terrenos acidentados;450.00
+31;Betoneira;Betoneira de 250 litros para mistura de concreto;120.00
+32;Guindaste Telescópico;Guindaste telescópico de 200 toneladas;900.00
+33;Retroescavadeira;Retroescavadeira com braço extensível;300.00
+34;Trator de Esteira;Trator de esteira para construção de estradas;500.00
+35;Caminhão Basculante;Caminhão basculante de 15 metros cúbicos;240.00
+36;Placa Vibratória;Placa vibratória reversível;80.00
+37;Serra de Esquadria;Serra de esquadria para cortes precisos;70.00
+38;Compactador de Solo;Compactador de solo para obras de fundação;180.00
+39;Escavadeira;Escavadeira de esteira para escavação de grandes áreas;380.00
+40;Máquina de Solda;Máquina de solda MIG/TIG;150.00
+41;Guindaste sobre Esteiras;Guindaste sobre esteiras de 150 toneladas;800.00
+42;Rompedor de Concreto;Rompedor de concreto hidráulico;160.00
+43;Mini Escavadeira;Mini escavadeira com lança articulada;260.00
+44;Trator de Pneus;Trator de pneus para agricultura de precisão;420.00
+45;Caminhão Pipa;Caminhão pipa de 20.000 litros;220.00
+46;Furadeira de Bancada;Furadeira de bancada industrial;90.00
+47;Compactador de Solo Vibratório;Compactador de solo vibratório de 2 toneladas;240.00
+48;Grua de Lança Fixa;Grua de lança fixa para construções altas;680.00
+49;Mixer de Argamassa;Mixer de argamassa portátil;110.00
+50;Rolo Compactador Duplo Tambor;Rolo compactador de duplo tambor;550.00
