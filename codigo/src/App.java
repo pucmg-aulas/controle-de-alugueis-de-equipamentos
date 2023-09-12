@@ -256,13 +256,10 @@ public class App {
 
                             break;
                         case 2:
-                            cliente.listarClientes(listaClientes);
+                            master.listarClientes();
                             break;
                         case 3:
-                            System.out.println("Cliente excluído com sucesso!");
-                            break;
-                        case 4:
-                            master.listarClientes();
+                            System.out.println("Saindo...");
                             break;
                         default:
                             System.out.println("Opção inválida!");
@@ -281,12 +278,6 @@ public class App {
                             equipamento.salvarEquipamentos(master.getListaEquipamentos());
                             break;
                         case 2:
-                            System.out.println("Equipamento editado com sucesso!");
-                            break;
-                        case 3:
-                            System.out.println("Equipamento excluído com sucesso!");
-                            break;
-                        case 4:
                             master.listarEquipamentos();
                             break;
                         case 3:
@@ -309,12 +300,6 @@ public class App {
                             aluguel.salvarAlugueis(master.getListaAlugueis());
                             break;
                         case 2:
-                            System.out.println("Aluguel editado com sucesso!");
-                            break;
-                        case 3:
-                            System.out.println("Aluguel excluído com sucesso!");
-                            break;
-                        case 4:
                             master.listarAlugueis();
                             break;
                         case 3:
@@ -329,10 +314,9 @@ public class App {
                     System.out.println("Saindo...");
                 default:
                     System.out.println("Opção inválida");
-
             }
 
-        } while (choice != 0);
+        } while (choice != 4);
 
         scanner.close();
     }

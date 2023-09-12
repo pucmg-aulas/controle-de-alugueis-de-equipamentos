@@ -191,14 +191,6 @@ public class Cliente {
         }
     }
 
-    public void editarCliente() {
-        System.out.println("Cliente editado com sucesso!");
-    }
-
-    public void excluirCliente() {
-        System.out.println("Cliente excluído com sucesso!");
-    }
-
     public static boolean validaCPF(String cpf) {
         // Verifica se o CPF possui o formato válido
         String cpfRegex = "^(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2})|(\\d{11})$";
