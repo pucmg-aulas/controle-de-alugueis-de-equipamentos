@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.time.Month;
 
 public class App {
 
@@ -210,9 +211,9 @@ public class App {
         for (Aluguel aluguel : listaAlugueis) {
             System.out.println("ID: " + aluguel.getId());
             System.out.println("Cliente: " + aluguel.getCliente().getNome());
-            System.out.println("Equipamento: " + aluguel.getEquipamento().getDescricao());
-            System.out.println("Dias Alugados: " + aluguel.calcularDiasAlugados());
-            System.out.println("Valor Total: R$" + aluguel.calcularValorTotal());
+            System.out.println("Equipamento: " + aluguel.getEquipamento().getNome());
+            System.out.println("Dias Alugados: " + aluguel.calcularDiasAlugados(aluguel.getDataInicio(), aluguel.getDataFim()));
+            System.out.println("Valor Total: R$" + aluguel.calcularValorTotal(aluguel.getEquipamento().getValorDiaria(), aluguel.getDataInicio(), aluguel.getDataFim()));
             System.out.print("\n");
         }
     }
@@ -221,9 +222,9 @@ public class App {
 
         System.out.println("ID: " + aluguel.getId());
         System.out.println("Cliente: " + aluguel.getCliente().getNome());
-        System.out.println("Equipamento: " + aluguel.getEquipamento().getDescricao());
-        System.out.println("Dias Alugados: " + aluguel.calcularDiasAlugados());
-        System.out.println("Valor Total: R$" + aluguel.calcularValorTotal());
+        System.out.println("Equipamento: " + aluguel.getEquipamento().getNome());
+        System.out.println("Dias Alugados: " + aluguel.calcularDiasAlugados(aluguel.getDataInicio(), aluguel.getDataFim()));
+        System.out.println("Valor Total: R$" + aluguel.calcularValorTotal(aluguel.getEquipamento().getValorDiaria(), aluguel.getDataInicio(), aluguel.getDataFim()));
         System.out.print("\n");
 
     }
@@ -317,7 +318,7 @@ public class App {
                 case 3:
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEIS *****");
                     System.out.println(
-                            "1 - Cadastrar\n2 - Lista de Alugueis\n3- Listar Alugueis de um Cliente\n4- Sair");
+                            "1 - Cadastrar\n2 - Lista de Alugueis\n3- Listar Alugueis de um Cliente\n4- Relatorio de alugueis mensal\n5- Sair");
                     choice = scanner.nextInt();
                     Aluguel aluguel = new Aluguel();
 
@@ -334,6 +335,12 @@ public class App {
                             master.listarAlugueisCliente(scanner);
                             break;
                         case 4:
+                            System.out.println("Digite o mes desejado para a análise: ");
+                            scanner.nextLine();
+                            Month mes = Month.of(scanner.nextInt());
+                            aluguel.alugueisPorMes(master.getListaAlugueis(), mes);
+                            break;
+                        case 5:
                             System.out.println("Saindo...");
                             break;
                         default:
