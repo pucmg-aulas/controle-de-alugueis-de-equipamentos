@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.time.Month;
 
 public class Aluguel {
     private static int contadorIDs = 0;
@@ -176,5 +177,17 @@ public class Aluguel {
         int diasAlugados = calcularDiasAlugados();
         valorTotal = diasAlugados * equipamento.getValorDiaria();
         return valorTotal;
+    }
+
+    public List<Aluguel> alugueisPorMes(List<Aluguel> listaAlugueis, Month mes) {
+        // dados
+        List<Aluguel> result = new ArrayList<Aluguel>();
+        
+        // percorrendo pela lista de alugueis
+        for(int i = 0; i < listaAlugueis.size(); i++) {
+            //if(listaAlugueis.get(i).getDataInicio().getMonth() == mes && listaAlugueis.get(i).getDataInicio().getMonth())
+        }
+
+        return result;
     }
 }
