@@ -10,7 +10,6 @@ public class App {
 
     public static Cliente criarClienteDoArquivo(String linha) {
         String[] dados = linha.split(";");
-
         // int id = Integer.parseInt(dados[0]);
         String nome = dados[1];
         String cpf = dados[2];
@@ -104,7 +103,7 @@ public class App {
             //System.out.print("\033[H\033[2J"); // Limpa o console
             //System.out.flush();
             System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS *****");
-            System.out.println("1 - Clientes\n2 - Equipamentos\n3 - Alugueis\n0 - Sair");
+            System.out.println("1 - Clientes\n2 - Equipamentos\n3 - Alugueis\n4 - Sair");
             System.out.print("Digite a opcao desejada: ");
             choice = scanner.nextInt();
 
@@ -114,7 +113,7 @@ public class App {
                     System.out.print("\033[H\033[2J"); // Limpa o console
                     System.out.flush();
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES *****");
-                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Clientes\n0 - Sair");
+                    System.out.println("1 - Cadastrar\n2 - Lista de Clientes\n3 - Sair");
                     System.out.print("Digite a opcao desejada: ");
                     choice = scanner.nextInt();
 
@@ -127,13 +126,10 @@ public class App {
                             
                             break;
                         case 2:
-                            System.out.println("Cliente editado com sucesso!");
+                            cliente.listarClientes(listaClientes);
                             break;
                         case 3:
-                            System.out.println("Cliente excluído com sucesso!");
-                            break;
-                        case 4:
-                            cliente.listarClientes(listaClientes);
+                            System.out.println("Saindo...");
                             break;
                         default:
                             System.out.println("Opção inválida!");
@@ -142,7 +138,7 @@ public class App {
                     break;
                 case 2:
                     System.out.println("\n\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTOS *****");
-                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Equipamentos\n0 - Sair");
+                    System.out.println("1 - Cadastrar\n2 - Lista de Equipamentos\n3 - Sair");
                     choice = scanner.nextInt();
                     Equipamento equipamento = new Equipamento();
 
@@ -151,15 +147,9 @@ public class App {
                             equipamento.cadastrarEquipamento(scanner, listaEquipamentos);
                             break;
                         case 2:
-                            System.out.println("Equipamento editado com sucesso!");
-                            break;
-                        case 3:
-                            System.out.println("Equipamento excluído com sucesso!");
-                            break;
-                        case 4:
                             Equipamento.listarEquipamentos(listaEquipamentos);
                             break;
-                        case 0:
+                        case 3:
                             System.out.println("Saindo...");
                             break;
                         default:
@@ -169,7 +159,7 @@ public class App {
                     break;
                 case 3:
                     System.out.println("***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEIS *****");
-                    System.out.println("1 - Cadastrar\n2 - Editar\n3 - Excluir\n4 - Lista de Alugueis\n0 - Sair");
+                    System.out.println("1 - Cadastrar\n2 - Lista de Alugueis\n3 - Sair");
                     choice = scanner.nextInt();
                     Aluguel aluguel = new Aluguel();
 
@@ -178,15 +168,9 @@ public class App {
                             aluguel.cadastrarAluguel(scanner, listaClientes, listaEquipamentos, listaAlugueis);
                             break;
                         case 2:
-                            System.out.println("Aluguel editado com sucesso!");
-                            break;
-                        case 3:
-                            System.out.println("Aluguel excluído com sucesso!");
-                            break;
-                        case 4:
                             Aluguel.listarAlugueis(listaAlugueis);
                             break;
-                        case 0:
+                        case 3:
                             System.out.println("Saindo...");
                             break;
                         default:
@@ -194,11 +178,14 @@ public class App {
                             break;
                     }
                     break;
-                case 0:
+                case 4:
                     System.out.println("Saindo...");
+                default:
+                    System.out.println("Opção inválida");
+
             }
             
-        } while (choice != 0);
+        } while (choice != 4);
 
         scanner.close();
     }

@@ -191,14 +191,6 @@ public class Cliente {
         }
     }
 
-    public void editarCliente() {
-        System.out.println("Cliente editado com sucesso!");
-    }
-
-    public void excluirCliente() {
-        System.out.println("Cliente excluído com sucesso!");
-    }
-
     public void listarClientes(List<Cliente> listaClientes) {
         /*Função que lista todos os clientes*/
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / LISTA DE CLIENTES *****");

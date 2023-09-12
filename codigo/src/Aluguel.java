@@ -43,6 +43,7 @@ public class Aluguel {
             scanner.nextLine();
             idCliente = scanner.nextInt();
         } while (Cliente.buscarClientePorID(listaClientes, idCliente) == null);
+        System.out.println("Cliente não encontrado");
         Cliente cliente = Cliente.buscarClientePorID(listaClientes, idCliente);
         alugueis = cliente.getAlugueis();
         alugueis.add(this.id);
@@ -53,9 +54,9 @@ public class Aluguel {
             System.out.print("Digite o ID do equipamento a ser alugado: ");
             idEquipamento = scanner.nextInt();
         } while (Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento) == null);
+        System.out.println("Equipamento não encontrado");
         Equipamento equipamento = Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento);
-
-        //DAVI ARRUMAR AS DATAS      
+     
         System.out.print("Digite a data de início do aluguel: ");
         scanner.nextLine();
         LocalDate dataInicio = LocalDate.parse(scanner.nextLine());
