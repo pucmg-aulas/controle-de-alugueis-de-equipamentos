@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -23,7 +27,7 @@ public class Aluguel {
         this.valorTotal = 0;
     }
 
-    public Aluguel(Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim, float valorTotal) {
+    public Aluguel(Cliente cliente, Equipamento equipamento, LocalDate dataInicio, LocalDate dataFim, double valorTotal) {
         this.id = contadorIDs;
         this.cliente = cliente;
         this.equipamento = equipamento;
@@ -31,6 +35,84 @@ public class Aluguel {
         this.dataFim = dataFim;
         this.valorTotal = valorTotal;
         contadorIDs++;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Equipamento getEquipamento() {
+        return equipamento;
+    }
+
+    public void setEquipamento(Equipamento equipamento) {
+        this.equipamento = equipamento;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    @Override
+    public String toString() {
+        return getId() +
+            ";" + getCliente().getId() +
+            ";" + getEquipamento().getId() +
+            ";" + getDataInicio() +
+            ";" + getDataFim() +
+            ";" + getValorTotal();
+    }
+
+    public Cliente buscarClientePorID(List<Cliente> listaClientes, int idProcurado) {
+        /*DAVI TEM QUE VALIDAR E DOCUMENTAR */
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == idProcurado) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public Equipamento buscarEquipamentoPorID(List<Equipamento> listaEquipamentos, int idProcurado) {
+        for (Equipamento equipamento : listaEquipamentos) {
+            if (equipamento.getId() == idProcurado) {
+                return equipamento;
+            }
+        }
+        return null;
     }
 
     public void cadastrarAluguel(Scanner scanner, List<Cliente> listaClientes, List<Equipamento> listaEquipamentos, List<Aluguel> listaAlugueis) {
@@ -42,8 +124,8 @@ public class Aluguel {
             System.out.print("Digite o ID do cliente que está alugando: ");
             scanner.nextLine();
             idCliente = scanner.nextInt();
-        } while (Cliente.buscarClientePorID(listaClientes, idCliente) == null);
-        Cliente cliente = Cliente.buscarClientePorID(listaClientes, idCliente);
+        } while (buscarClientePorID(listaClientes, idCliente) == null);
+        Cliente cliente = buscarClientePorID(listaClientes, idCliente);
         alugueis = cliente.getAlugueis();
         alugueis.add(this.id);
         cliente.setAlugueis(alugueis);
@@ -52,8 +134,8 @@ public class Aluguel {
         do {
             System.out.print("Digite o ID do equipamento a ser alugado: ");
             idEquipamento = scanner.nextInt();
-        } while (Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento) == null);
-        Equipamento equipamento = Equipamento.buscarEquipamentoPorID(listaEquipamentos, idEquipamento);
+        } while (buscarEquipamentoPorID(listaEquipamentos, idEquipamento) == null);
+        Equipamento equipamento = buscarEquipamentoPorID(listaEquipamentos, idEquipamento);
 
         //DAVI ARRUMAR AS DATAS      
         System.out.print("Digite a data de início do aluguel: ");
@@ -67,15 +149,21 @@ public class Aluguel {
         listaAlugueis.add(novoAluguel);
     }
 
-    public static void listarAlugueis(List<Aluguel> listaAlugueis) {
-        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / ALUGUEL / LISTAR *****");
-        for (Aluguel aluguel : listaAlugueis) {
-            System.out.println("ID: " + aluguel.id);
-            System.out.println("Cliente: " + aluguel.cliente.getNome());
-            System.out.println("Equipamento: " + aluguel.equipamento.getDescricao());
-            System.out.println("Dias Alugados: " + aluguel.calcularDiasAlugados());
-            System.out.println("Valor Total: R$" + aluguel.calcularValorTotal());
-            System.out.print("\n");
+    public void salvarAlugueis(List<Aluguel> listaAlugueis) {
+        try {
+            File file = new File(".\\codigo\\src\\alugueis.txt");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for(Aluguel aluguel: listaAlugueis) {
+                bufferedWriter.write(aluguel.toString());
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+        } catch(IOException e) {
+            System.out.println("Erro ao salvar o cliente.");
+            e.printStackTrace();
         }
     }
 

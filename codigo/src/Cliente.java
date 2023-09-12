@@ -173,7 +173,7 @@ public class Cliente {
             ";" + getEmail();
     }
 
-    public static void salvarClientes(List<Cliente> listaClientes) {
+    public void salvarClientes(List<Cliente> listaClientes) {
         try {
             File file = new File(".\\codigo\\src\\clientes.txt");
             FileWriter fileWriter = new FileWriter(file);
@@ -197,30 +197,6 @@ public class Cliente {
 
     public void excluirCliente() {
         System.out.println("Cliente excluído com sucesso!");
-    }
-
-    public void listarClientes(List<Cliente> listaClientes) {
-        /*Função que lista todos os clientes*/
-        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / CLIENTES / LISTA DE CLIENTES *****");
-        for (Cliente cliente : listaClientes) {
-            System.out.println("ID: " + cliente.id);
-            System.out.println("Nome: " + cliente.nome);
-            System.out.println("CPF: " + cliente.cpf);
-            System.out.println("Endereço: " + cliente.endereco);
-            System.out.println("Telefone: " + cliente.telefone);
-            System.out.println("E-mail: " + cliente.email);
-            System.out.print("\n");
-        }
-    }
-
-    public static Cliente buscarClientePorID(List<Cliente> listaClientes, int idProcurado) {
-        /*DAVI TEM QUE VALIDAR E DOCUMENTAR */
-        for (Cliente cliente : listaClientes) {
-            if (cliente.id == idProcurado) {
-                return cliente;
-            }
-        }
-        return null;
     }
 
     public static boolean validaCPF(String cpf) {

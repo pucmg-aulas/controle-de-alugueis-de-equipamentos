@@ -61,7 +61,7 @@ public class Equipamento {
 
     public void cadastrarEquipamento(Scanner scanner, List<Equipamento> listaEquipamentos) {
         System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTO / CADASTRAR *****");
-        System.out.println("Digite o nome do quipamento: ");
+        System.out.println("Digite o nome do equipamento: ");
         scanner.nextLine();
         String nome = scanner.nextLine();
 
@@ -75,25 +75,6 @@ public class Equipamento {
         listaEquipamentos.add(novoEquipamento);
     }
 
-    public static void listarEquipamentos(List<Equipamento> listaEquipamentos) {
-        System.out.println("\n***** CONTROLE DE ALUGUEIS DE EQUIPAMENTOS / EQUIPAMENTO / LISTA DE EQUIPAMENTOS *****");
-        for (Equipamento equipamento : listaEquipamentos) {
-            System.out.println("ID: " + equipamento.id);
-            System.out.println("Descrição: " + equipamento.descricao);
-            System.out.println("Valor da diária: " + equipamento.valorDiaria);
-            System.out.print("\n");
-        }
-    }
-
-    public static Equipamento buscarEquipamentoPorID(List<Equipamento> listaEquipamentos, int idProcurado) {
-        for (Equipamento equipamento : listaEquipamentos) {
-            if (equipamento.id == idProcurado) {
-                return equipamento;
-            }
-        }
-        return null;
-    }
-
     @Override
     public String toString() {
         return getId() +
@@ -102,7 +83,7 @@ public class Equipamento {
             ";" + getValorDiaria();
     }
 
-    public static void salvarEquipamentos(List<Equipamento> listaEquipamentos) {
+    public void salvarEquipamentos(List<Equipamento> listaEquipamentos) {
         try {
             File file = new File(".\\codigo\\src\\equipamentos.txt");
             FileWriter fileWriter = new FileWriter(file);
