@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Backlog do projeto XXX
+=======
+# Backlog do projeto 1 - Software de controle de aluguel de equipamentos
+>>>>>>> 6f434deb2eb34b47aac38a2a432dbe0171032de4
 Atualizado em 11/09/2023
 
 ## Tarefas terminadas
