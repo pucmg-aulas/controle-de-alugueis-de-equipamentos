@@ -97,12 +97,13 @@ public class Aluguel {
                 ";" + getValorTotal();
     }
 
-    public void imprimir() {
+    public void imprimirMes() {
         System.out.println("ID: " + id);
         System.out.println("Cliente: " + cliente.getNome());
         System.out.println("Equipamento: " + equipamento.getNome());
-        System.out.println("Dias Alugados: " + calcularDiasAlugados(dataInicio, dataFim));
-        System.out.println("Valor Total: R$" + calcularValorTotal(equipamento.getValorDiaria(), dataInicio, dataFim));
+        System.out.println("Dias Alugados: " + calcularDiasAlugadosMes(dataInicio, dataFim));
+        System.out.println("Valor Total: R$"
+                + calcularValorTotalMes(calcularDiasAlugadosMes(dataInicio, dataFim), equipamento.getValorDiaria()));
         System.out.print("\n");
     }
 
@@ -155,7 +156,8 @@ public class Aluguel {
         System.out.print("Digite a data de fim do aluguel: ");
         LocalDate dataFim = LocalDate.parse(scanner.nextLine());
 
-        Aluguel novoAluguel = new Aluguel(cliente, equipamento, dataInicio, dataFim, calcularValorTotal(equipamento.getValorDiaria(), dataInicio, dataFim));
+        Aluguel novoAluguel = new Aluguel(cliente, equipamento, dataInicio, dataFim,
+                calcularValorTotal(equipamento.getValorDiaria(), dataInicio, dataFim));
         listaAlugueis.add(novoAluguel);
     }
 
@@ -182,9 +184,39 @@ public class Aluguel {
         return diasAlugados;
     }
 
+    public int calcularDiasAlugadosMes(LocalDate dataInicio, LocalDate dataFim) {
+
+        Month mesInicio = dataInicio.getMonth();
+        Month mesFim = dataFim.getMonth();
+        int diasAlugadosMes = 0;
+
+        if (mesInicio != mesFim) {
+
+            if (mesInicio == Month.APRIL || mesInicio == Month.JUNE || mesInicio == Month.SEPTEMBER
+                    || mesInicio == Month.NOVEMBER) {
+                diasAlugadosMes = (int) ChronoUnit.DAYS.between(dataInicio,
+                        LocalDate.of(dataInicio.getYear(), dataInicio.getMonth(), 30));
+            } else if (mesInicio == Month.FEBRUARY) {
+                diasAlugadosMes = (int) ChronoUnit.DAYS.between(dataInicio,
+                        LocalDate.of(dataInicio.getYear(), dataInicio.getMonth(), 29));
+            } else {
+                diasAlugadosMes = (int) ChronoUnit.DAYS.between(dataInicio,
+                        LocalDate.of(dataInicio.getYear(), dataInicio.getMonth(), 31));
+            }
+        } else if (mesInicio == mesFim) {
+            diasAlugadosMes = calcularDiasAlugados(dataInicio, dataFim);
+        }
+        return diasAlugadosMes;
+    }
+
     public double calcularValorTotal(double valorDiaria, LocalDate dataInicio, LocalDate dataFim) {
         int diasAlugados = calcularDiasAlugados(dataInicio, dataFim);
         valorTotal = diasAlugados * valorDiaria;
+        return valorTotal;
+    }
+
+    public double calcularValorTotalMes(int diasAlugadosMes, double valorDiaria) {
+        valorTotal = diasAlugadosMes * valorDiaria;
         return valorTotal;
     }
 
@@ -206,19 +238,23 @@ public class Aluguel {
 
             if (mesInicio == mes && mesInicio == mesFim) {
                 faturamentoTotal = faturamentoTotal + aluguel.getValorTotal();
-                aluguel.imprimir();
+                aluguel.imprimirMes();
             } else if (mesInicio == mes && mesInicio != mesFim) {
 
-                if(mesInicio == Month.APRIL || mesInicio == Month.JUNE || mesInicio == Month.SEPTEMBER || mesInicio == Month.NOVEMBER) {
-                    diasAlugados = (int) ChronoUnit.DAYS.between(aluguel.getDataInicio(), LocalDate.of(aluguel.getDataInicio().getYear(), aluguel.getDataInicio().getMonth(), 30));
-                } else if(mesInicio == Month.FEBRUARY) {
-                    diasAlugados = (int) ChronoUnit.DAYS.between(aluguel.getDataInicio(), LocalDate.of(aluguel.getDataInicio().getYear(), aluguel.getDataInicio().getMonth(), 29));
+                if (mesInicio == Month.APRIL || mesInicio == Month.JUNE || mesInicio == Month.SEPTEMBER
+                        || mesInicio == Month.NOVEMBER) {
+                    diasAlugados = (int) ChronoUnit.DAYS.between(aluguel.getDataInicio(),
+                            LocalDate.of(aluguel.getDataInicio().getYear(), aluguel.getDataInicio().getMonth(), 30));
+                } else if (mesInicio == Month.FEBRUARY) {
+                    diasAlugados = (int) ChronoUnit.DAYS.between(aluguel.getDataInicio(),
+                            LocalDate.of(aluguel.getDataInicio().getYear(), aluguel.getDataInicio().getMonth(), 29));
                 } else {
-                    diasAlugados = (int) ChronoUnit.DAYS.between(aluguel.getDataInicio(), LocalDate.of(aluguel.getDataInicio().getYear(), aluguel.getDataInicio().getMonth(), 31));
+                    diasAlugados = (int) ChronoUnit.DAYS.between(aluguel.getDataInicio(),
+                            LocalDate.of(aluguel.getDataInicio().getYear(), aluguel.getDataInicio().getMonth(), 31));
                 }
 
-                faturamentoTotal = faturamentoTotal + (diasAlugados*aluguel.getEquipamento().getValorDiaria());
-                aluguel.imprimir();
+                faturamentoTotal = faturamentoTotal + (diasAlugados * aluguel.getEquipamento().getValorDiaria());
+                aluguel.imprimirMes();
             }
         }
 
